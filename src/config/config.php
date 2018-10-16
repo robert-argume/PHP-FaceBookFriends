@@ -6,7 +6,7 @@
     if (!session_id()) {
         session_start();
     }
-
+    
     // Support from Facebook PHP SDK
     require '../src/lib/Facebook/autoload.php';
 

@@ -1,14 +1,14 @@
 <?php
 		 require './config/config.php';
-		 echo "ENTER friends.php";
+		 
 		 // include database and object files
 		include_once './config/database.php';
 		include_once 'model/facebookuser.php';
-		echo "AFTER including database.php";
+		
 		// instantiate database 
 		$database = new Database();
 		$db = $database->getConnection();
-		echo "AFTER CONNECTING TO DATABSE";
+		
 		// // Get all Facebook users in the App
 		// $allUsers = getAllFacebookUsers($db);
 		// if( $allUsers!=null){

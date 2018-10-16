@@ -1,6 +1,6 @@
 <?php
     require './config/config.php';
-    echo "ENTER fb-callback.php";
+    
     $helper = $fb->getRedirectLoginHelper();
     
     try {
@@ -14,7 +14,7 @@
         echo 'Facebook SDK returned an error: ' . $e->getMessage();
         exit;
     }
-    echo "AFTER $accessToken = $helper->getAccessToken()";
+    
     if (! isset($accessToken)) {
         if ($helper->getError()) {
         header('HTTP/1.0 401 Unauthorized');
@@ -28,7 +28,7 @@
         }
         exit;
     }
-    echo "AFTER ! isset($accessToken)";
+    
     // Logged in
     echo '<h3>Access Token</h3>';
     var_dump($accessToken->getValue());
@@ -46,7 +46,7 @@
     // If you know the user ID this access token belongs to, you can validate it here
     //$tokenMetadata->validateUserId('123');
     $tokenMetadata->validateExpiration();
-    echo "AFTER $tokenMetadata->validateExpiration()";
+    
     if (! $accessToken->isLongLived()) {
         // Exchanges a short-lived access token for a long-lived one
         try {
@@ -62,7 +62,7 @@
         var_dump($accessToken);
         echo "</pre>";
     }
-    echo "AFTER LONG LIVED TOKEN";
+    
     // Current user access token is saved in the session
     $_SESSION['fb_access_token'] = (string) $accessToken;
 
@@ -70,7 +70,7 @@
     if ($tokenMetadata->getUserId() == $config['compare_base_user_id']) {
         $_SESSION['base_user_token'] = (string) $accessToken;
     }    
-    echo "AFTER Store in Session";
+    
     // Login process is finished, redirect to next page
     //header('Location: profile.php');
     header('Location: friends.php');
